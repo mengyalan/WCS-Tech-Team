@@ -5,4 +5,3 @@ WCS-Tech-Team
 
 Set up:
   Install Meteor
-  run
