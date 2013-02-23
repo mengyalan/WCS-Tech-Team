@@ -1,66 +1,82 @@
 <!doctype html>
 <html>
 
-<head>
-  <meta charset="utf-8" />
-  <title>Collaborative editing with CodeMirror</title>
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/codemirror/lib/codemirror.css" />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Collaborative editing with CodeMirror</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="http://staging.tokbox.com/v1.1/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/jquery.opentok.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/jquery.opentok.layout.js" type="text/javascript" charset="utf-8"></script>
 
-<body>
-  <div class="container" id="wrapper">
-    <h1>Collaborative editing with CodeMirror</h1>
-    <div class="row">
-      <div class="span9" id="editor-wrapper">
-        <div class="row">
-          <div class="span3">
-            <div class="btn-toolbar">
-              <div class="btn-group">
-                <a id="undo-btn" class="btn" href="#" title="Undo">
-                  <i class="icon-arrow-left"></i>
-                </a>
-                <a id="redo-btn" class="btn" href="#" title="Redo">
-                  <i class="icon-arrow-right"></i>
-                </a>
-              </div>
-              <div class="btn-group">
-                <a id="bold-btn" class="btn" href="#" title="Bold">
-                  <i class="icon-bold"></i>
-                </a>
-                <a id="italic-btn" class="btn" href="#" title="Italic">
-                  <i class="icon-italic"></i>
-                </a>
-                <a id="code-btn" class="btn" href="#" title="Code">
-                  <i class="icon-barcode"></i>
-                </a>
+    <script src="video.js" type="text/javascript" charset="utf-8"></script>
+
+    <link href="lib/jquery.opentok.css" type="text/css" rel="stylesheet" >
+    <link href="lib/jquery.opentok.layout.css" type="text/css" rel="stylesheet" >
+
+  </head>
+
+  <body>
+    <div class="container" id="wrapper">
+      <h1>WCS Collaborative Coding Editor</h1>
+      <div class="row">
+        <div class="span9" id="editor-wrapper">
+          <div class="row">
+            <div class="span3">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <a id="undo-btn" class="btn" href="#" title="Undo"> <i class="icon-arrow-left"></i> </a>
+                  <a id="redo-btn" class="btn" href="#" title="Redo"> <i class="icon-arrow-right"></i> </a>
+                </div>
+                <div class="btn-group">
+                  <a id="bold-btn" class="btn" href="#" title="Bold"> <i class="icon-bold"></i> </a>
+                  <a id="italic-btn" class="btn" href="#" title="Italic"> <i class="icon-italic"></i> </a>
+                  <a id="code-btn" class="btn" href="#" title="Code"> <i class="icon-barcode"></i> </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="span6">
-            <form id="login-form" class="form-inline btn-toolbar">
-              <input id="username" class="span2 input-small" autofocus="autofocus" type="text" placeholder="Username" required="required" value="" />
-              <input type="submit" class="btn btn-success" value="Participate" />
-            </form>
+            <div class="span6">
+              <form id="login-form" class="form-inline btn-toolbar">
+                <input id="username" class="span2 input-small" autofocus="autofocus" type="text" placeholder="Username" required="required" value="" />
+                <input type="submit" class="btn btn-success" value="Participate" />
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="span3">
-        <div class="well" id="userlist-wrapper">
-          <h2>Users</h2>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="span3">
+          <div class="well" id="userlist-wrapper">
+            <h2>Users</h2>
+          </div>
 
-  <script src="/codemirror/lib/codemirror.js"></script>
-  <script src="/codemirror/mode/xml/xml.js"></script>
-  <script src="/codemirror/mode/markdown/markdown.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <!--<script src="/ot-min.js"></script>-->
-  <script src="/ot.js"></script>
-  <script src="/client.js"></script>
-</body>
+          <div id='opentok_container'>
+            <div id="opentok_console"></div>
+            <div id="links">
+              <a href="#" id="connectLink">Connect</a>
+              <a href="#" id="disconnectLink">Leave</a>
+              <a href="#" id="publishLink">Publish</a>
+              <a href="#" id="unpublishLink">Unpublish</a>
+            </div>
+            <div id="streams" class="subscriberContainer">
+              <div id="publisherDiv" class="publisherContainer"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/mode/xml/xml.js"></script><!--
+    <script src="codemirror/mode/markdown/markdown.js"></script>-->
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+    <script src="../node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <!--<script src="/ot-min.js"></script>-->
+    <script src="ot.js"></script>
+    <script src="client.js"></script>
+  </body>
 
 </html>

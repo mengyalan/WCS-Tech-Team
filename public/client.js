@@ -3,7 +3,7 @@
   var SocketIOAdapter = ot.SocketIOAdapter;
   var CodeMirrorAdapter = ot.CodeMirrorAdapter;
 
-  var socket = io.connect('/');
+  var socket = io.connect('http://mengyalan.com:3000');
 
   // uncomment to simulate more latency
   /*(function () {
@@ -78,7 +78,7 @@
   var cm = window.cm = CodeMirror(editorWrapper, {
     lineNumbers: true,
     lineWrapping: true,
-    mode: 'markdown',
+    mode: 'javascript',
     readOnly: 'nocursor'
   });
 
